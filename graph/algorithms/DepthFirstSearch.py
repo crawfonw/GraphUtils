@@ -16,3 +16,9 @@ def dfs(graph, source=None, target):
 
 def dfs_tree(graph, source):
     return
+    
+def dfs_preorder(graph, source):
+    return
+    
+def dfs_postorder(graph, source):
+    return

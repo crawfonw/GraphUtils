@@ -23,3 +23,9 @@ class Container(object):
     
     def __iter__(self):
         return iter(self.objs)
+
+    def add(self, obj):
+        raise NotImplementedError()
+        
+    def get_next(self):
+        raise NotImplementedError()

@@ -17,3 +17,7 @@ class PriorityQueue(Queue.Queue):
     def dequeue(self):
         (priority,item) = heapq.heappop(self.objs)
         return item
+
+    def add(self, tup):
+        obj, priority = tup
+        self.enqueue(obj, priority)

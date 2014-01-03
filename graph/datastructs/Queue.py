@@ -23,5 +23,8 @@ class Queue(Container.Container):
     def is_empty(self):
         return len(self.objs) == 0
     
-    def next(self):
+    def add(self, obj):
+        self.enqueue(obj)
+    
+    def get_next(self):
         return self.dequeue()

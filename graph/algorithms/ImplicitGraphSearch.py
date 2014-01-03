@@ -21,7 +21,7 @@ def implicit_graph_search(graph, source, target, data_container):
     closed = set()
     open_ = data_container(source)
     while not open_.is_empty():
-        u = open_.next() #dictated by the data structure used; must remove item from container
+        u = open_.get_next() #dictated by the data structure used; must remove item from container
         closed.add(u)
         if u == target:
             return path(u, source, parents)
@@ -29,6 +29,6 @@ def implicit_graph_search(graph, source, target, data_container):
             union = closed.union(open_)
             for v in expand(u):
                 if v not in union:
-                    open.add(v)
+                    open_.add(v)
                     parents[v] = u
     return None

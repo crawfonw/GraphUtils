@@ -20,5 +20,8 @@ class Stack(Container.Container):
     def is_empty(self):
         return len(self.objs) == 0
     
-    def next(self):
+    def add(self, obj):
+        self.push(obj)
+    
+    def get_next(self):
         return self.pop()
