@@ -59,6 +59,10 @@ class Graph(object):
                 self.edge_weights[(edge,node)] = weights[i]
     
     def add_edge(self, from_node, to_node, weight=1):
+        if from_node not in self.nodes():
+            self.add_node(from_node)
+        if to_node not in self.nodes():
+            self.add_node(to_node)
         if to_node not in self.neighbors[from_node] and from_node not in self.neighbors[to_node]:
             self.neighbors[from_node].add(to_node)
             self.edge_weights[(from_node, to_node)] = weight
@@ -69,6 +73,16 @@ class Graph(object):
         else:
             raise ValueError('Edge already exists between %s and %s.' % (from_node, to_node))
     
+    def add_edges(self, edge_list):
+        for edge in edge_list:
+            if len(edge) == 2:
+                u,v = edge
+            elif len(edge) == 3:
+                u,v,w = edge
+            else:
+                raise ValueError('Edge tuple of length %s is not supported.' % str(len(edge)))
+            self.add_edge(u, v, w)
+    
     def delete_edge(self, from_node, to_node):
         self.neighbors[from_node].remove(to_node)
         del self.edge_weights[(from_node, to_node)]
@@ -77,7 +91,7 @@ class Graph(object):
             del self.edge_weights[(to_node, from_node)]
         self.edges -= 1
     
-    def nodes(self, node):
+    def nodes(self):
         return self.neighbors.keys()
     
     def delete_node(self, node):

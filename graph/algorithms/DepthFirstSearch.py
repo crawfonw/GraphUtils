@@ -5,8 +5,9 @@ Created on Dec 28, 2013
 '''
 
 from graph.datastructs.Stack import Stack
+from graph.graphs import Graph
 
-__all__ = ['dfs', 'dfs_tree']
+__all__ = ['dfs', 'dfs_tree', 'dfs_postorder', 'dfs_preorder']
 
 def dfs(graph, source=None):
     if source is None:
@@ -22,11 +23,14 @@ def dfs(graph, source=None):
                 open_.push(v)
                 yield u,v
 
-def dfs_tree(graph, source):
+def dfs_tree(graph, source=None):
+    g = Graph()
+    g.add_all(graph.nodes())
+    g.add_edges(dfs(graph, source))
+    return g
+    
+def dfs_preorder(graph, source=None):
     return
     
-def dfs_preorder(graph, source):
-    return
-    
-def dfs_postorder(graph, source):
+def dfs_postorder(graph, source=None):
     return
