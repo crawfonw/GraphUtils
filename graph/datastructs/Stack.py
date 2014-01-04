@@ -15,7 +15,7 @@ class Stack(Container.Container):
         self.objs.append(obj)
         
     def pop(self):
-        self.objs.pop()
+        return self.objs.pop()
         
     def is_empty(self):
         return len(self.objs) == 0

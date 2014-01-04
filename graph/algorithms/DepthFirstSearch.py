@@ -20,7 +20,7 @@ def dfs(graph, source=None):
         for v in graph.neighbors[u]:
             if v not in union:
                 open_.push(v)
-                yield v,u
+                yield u,v
 
 def dfs_tree(graph, source):
     return
