@@ -4,15 +4,23 @@ Created on Dec 28, 2013
 @author: Nick Crawford
 '''
 
-from ImplicitGraphSearch import implicit_graph_search
 from graph.datastructs.Stack import Stack
 
 __all__ = ['dfs', 'dfs_tree']
 
-def dfs(graph, source=None, target):
+def dfs(graph, source=None):
     if source is None:
         source = graph[0]
-    return implicit_graph_search(graph, source, target, Stack())
+    closed = set()
+    open_ = Stack(source)
+    while not open_.is_empty():
+        u = open_.pop()
+        closed.add(u)
+        union = closed.union(open_)
+        for v in graph.neighbors[u]:
+            if v not in union:
+                open_.push(v)
+                yield v,u
 
 def dfs_tree(graph, source):
     return
