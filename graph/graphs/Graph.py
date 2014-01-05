@@ -77,6 +77,7 @@ class Graph(object):
         for edge in edge_list:
             if len(edge) == 2:
                 u,v = edge
+                w = 1
             elif len(edge) == 3:
                 u,v,w = edge
             else:
