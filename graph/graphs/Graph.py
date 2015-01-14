@@ -18,11 +18,11 @@ class Graph(object):
         self.edge_weights = {}
         for node in nodes:
             self.neighbors[node] = set()
-        self.nodes = len(nodes)
+        self.size = len(nodes)
         self.edges = 0
     
     def __len__(self):
-        return self.nodes
+        return self.size
     
     def __getitem__(self, key):
         return self.neighbors.keys()[key]
@@ -31,10 +31,10 @@ class Graph(object):
         return iter(self.neighbors.keys())
     
     def __repr__(self):
-        return '%s(nodes=%s, directed=%s)' % (self.__class__.__name__, self.nodes, self.directed)
+        return '%s(nodes=%s, directed=%s)' % (self.__class__.__name__, self.size, self.directed)
     
     def __str__(self):
-        return (self.neighbors.keys(), self.edge_weights.keys())
+        return '%s, %s' % (self.neighbors.keys(), self.edge_weights)
     
     def adjacent(self, node1, node2):
         return node2 in self.neighbors(node1)
@@ -45,11 +45,11 @@ class Graph(object):
     def add_all(self, nodes):
         for node in nodes:
             self.neighbors[node] = set()
-            self.nodes += 1
+            self.size += 1
         
     def add_node(self, node, edges=[], weights=[]):
         self.neighbors[node] = set(edges)
-        self.nodes += 1
+        self.size += 1
         self.edges += len(edges)
         if len(edges) != len(weights):
             weights = [1]*len(edges)
@@ -102,7 +102,7 @@ class Graph(object):
             if node in edge:
                 del self.edge_weights[edge]
         del self.neighbors[node]
-        self.nodes -= 1
+        self.size -= 1
     
     def get_edge_weight(self, from_node, to_node):
         return self.edge_weights[(from_node, to_node)]
